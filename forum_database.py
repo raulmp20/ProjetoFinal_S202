@@ -13,7 +13,7 @@ class ForumDatabase:
         self.db.execute_query(query, parameters)
 
     def create_forum(self, name, description, post):
-        query = "MATCH (p:Postagem {titulo: $post}) CREATE (:Forum {nome: $name, descricao: $description)<-[:SOBRE]-(p)"
+        query = "MATCH (p:Postagem {titulo: $post}) CREATE (:Forum {nome: $name, descricao: $description})<-[:SOBRE]-(p)"
         parameters = {"name": name, "description": description, "post": post}
         self.db.execute_query(query, parameters)
 
@@ -28,8 +28,8 @@ class ForumDatabase:
         results = self.db.execute_query(query, parameters)
         return [result["titulo"] for result in results]
 
-    def get_foruns(self):
-        query = "MATCH (f:Forum) RETURN f.name AS name"
+    def get_forums(self):
+        query = "MATCH (f:Forum) RETURN f.nome AS name"
         results = self.db.execute_query(query)
         return [result["name"] for result in results]
 
@@ -49,7 +49,7 @@ class ForumDatabase:
         self.db.execute_query(query, parameters)
 
     def delete_user(self, name):
-        query = "MATCH (u:Usuario {nome: $name}) DETACH DELETE u"
+        query = "MATCH (u:Usuario {name: $name}) DETACH DELETE u"
         parameters = {"name": name}
         self.db.execute_query(query, parameters)
 
@@ -59,6 +59,6 @@ class ForumDatabase:
         self.db.execute_query(query, parameters)
 
     def delete_forum(self, name):
-        query = "MATCH (f:Forum {name: $name}) DETACH DELETE f"
+        query = "MATCH (f:Forum {nome: $name}) DETACH DELETE f"
         parameters = {"name": name}
         self.db.execute_query(query, parameters)
