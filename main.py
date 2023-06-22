@@ -3,7 +3,7 @@ from forum_database import ForumDatabase
 from cli import ForumCLI
 
 # cria uma instância da classe Database, passando os dados de conexão com o banco de dados Neo4j
-db = Database("bolt://44.202.192.227:7687", "neo4j", "stoppers-sheds-administrations")
+db = Database("bolt://3.235.4.95:7687", "neo4j", "artillery-manual-prefixes")
 
 forumModel = ForumDatabase(db)
 
